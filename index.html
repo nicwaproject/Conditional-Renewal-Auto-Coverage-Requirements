@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Conditional Renewal Auto Coverage Requirements — Charity One</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="charity_one_logo.png" alt="Charity One Logo" class="logo" onerror="this.style.display='none'"/>
+    </div>
+  </header>
+
+  <div class="divider-white" aria-hidden="true"></div>
+  <div class="divider-grey" aria-hidden="true"></div>
+
+  <div class="header-bottom">
+    <div class="subtitle"></div>
+  </div>
+
+  <div class="form-title">
+    <h1 class="title">Conditional Renewal of Auto Coverage Requirements</h1>
+  </div>
+
+  <main class="container" role="main">
+    <div class="card">
+
+      <form id="autoForm" novalidate>
+
+        <!-- Intro / E&O safe -->
+        <div>
+          <p class="intro">
+            The carrier has amended the automobile coverage terms for your upcoming renewal.
+            Please review the updated terms and submit any vehicle additions, deletions, or changes needed under the new coverage conditions.
+            Any updates submitted through this form will be processed as your request.
+          </p>
+        </div>
+
+        <!-- Educational Symbol Section (collapsible) -->
+        <div class="section">
+          <label class="section-title">What Do Auto Symbols Mean? <br>(click to view)</label>
+          <details>
+            <summary>Educational purposes only</summary>
+            <div class="summary-content">
+              <p><strong>Symbol 1 – Any Auto</strong> — Covers all vehicles your organization uses.</p>
+              <p><strong>Symbol 2 – Owned Autos</strong> — Vehicles your organization owns.</p>
+              <p><strong>Symbol 3 – Owned Private Passenger Autos</strong> — Cars, SUVs, minivans.</p>
+              <p><strong>Symbol 4 – Owned Commercial Autos</strong> — Vans, trucks, buses.</p>
+              <p><strong>Symbol 5 – No-Fault</strong> — State-required PIP/No-Fault coverage.</p>
+              <p><strong>Symbol 6 – UM/UIM</strong> — Uninsured/underinsured motorist coverage.</p>
+              <p><strong>Symbol 7 – Listed Autos Only</strong> — Only listed vehicles are covered.</p>
+              <p><strong>Symbol 8 – Hired Autos</strong> — Rented or leased vehicles.</p>
+              <p><strong>Symbol 9 – Non-Owned Autos</strong> — Employee-owned vehicles used for business.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Required Acknowledgment -->
+        <div class="section">
+          <label class="section-title">Acknowledgment <span class="required-star">*</span></label>
+          <div class="label-container">
+            <label class="choice-item">
+            <input type="checkbox" id="symbolsAck" class="answer"> I understand that only vehicles listed on the policy will be covered under Symbols 7, 8, and 9 for my renewal.
+          </label>
+          </div>
+        </div>
+
+        <!-- Change Type (multi-select) -->
+        <div class="section">
+          <label class="section-title">Change type (select all that apply) <span class="required-star">*</span></label>
+          <div class="choice-group" id="changeTypeGroup">
+            <label class="choice-item"><input type="checkbox" name="changeType" value="add"> Add a vehicle</label>
+            <label class="choice-item"><input type="checkbox" name="changeType" value="remove"> Remove a vehicle</label>
+            <label class="choice-item"><input type="checkbox" name="changeType" value="update"> Update / revise vehicle information</label>
+            <label class="choice-item"><input type="checkbox" name="changeType" value="other"> Other change</label>
+          </div>
+        </div>
+
+        <!-- Add Vehicle Section (conditional) -->
+        <div class="section hidden" id="addVehicleSection">
+          <label class="section-title">Add Vehicle</label>
+
+          <div id="vehicleList">
+            <!-- vehicle rows will be appended here -->
+          </div>
+
+          <button type="button" id="addVehicleBtn" class="btn secondary small" style="margin-top:10px;">Add another vehicle</button>
+
+          <p class="intro">Provide Year, Make, Model, VIN, garaging address, effective date. Driver name optional.</p>
+        </div>
+
+        <!-- Remove Vehicle Section (conditional) -->
+        <div class="section hidden" id="removeVehicleSection">
+          <label class="section-title">Remove Vehicle</label>
+          <div>
+            <br>
+          <label class="sub-section-title">Which vehicle should be removed? (example: "2020 Ford Transit or VIN ending 3847")</label>
+          <input type="text" id="removeWhich" class="answer" placeholder='e.g., "2020 Ford Transit or VIN ending 3847"'>
+          <br>
+          <label class="sub-section-title">Effective date to remove</label>
+          <br>
+          <input type="date" id="removeDate" class="answer">
+          <br>
+          <label class="sub-section-title">Reason</label>
+          <select id="removeReason" class="answer">
+            <option value="">-- select reason --</option>
+            <option value="sold">Sold</option>
+            <option value="traded">Traded</option>
+            <option value="totaled">Totaled</option>
+            <option value="no_longer_used">No longer used</option>
+            <option value="other">Other</option>
+          </select>
+          <div style="margin-top:8px;">
+            <input type="file" id="removeDoc" class="answer">
+            <div class="intro">Upload supporting document (optional)</div>
+          </div>
+          </div>
+          
+        </div>
+
+        <!-- Update / Revise Section (conditional) -->
+        <div class="section hidden" id="updateVehicleSection">
+          <label class="section-title">Update / Revise Vehicle Information</label>
+          <label class="sub-section-title">Correction type</label>
+          <select id="correctionType" class="answer">
+            <option value="">-- select correction --</option>
+            <option value="vin">VIN correction</option>
+            <option value="garaging">Garaging update</option>
+            <option value="driver">Driver update</option>
+            <option value="name">Name / typo correction</option>
+            <option value="other">Other</option>
+          </select>
+
+          <label class="sub-section-title">Updated information</label>
+          <input type="text" id="updatedInfo" class="answer" placeholder="Provide updated value">
+
+          <label class="sub-section-title">Effective date (optional)</label>
+          <input type="date" id="updateEffDate" class="answer">
+
+          <div style="margin-top:8px;">
+            <input type="file" id="updateDoc" class="answer">
+            <div class="intro">Upload supporting document (optional)</div>
+          </div>
+        </div>
+
+        <!-- Other Change Section (conditional) -->
+        <div class="section hidden" id="otherChangeSection">
+          <label class="section-title">Other change</label>
+          <textarea id="otherChangeDesc" class="answer" placeholder="Describe the requested change"></textarea>
+          <div style="margin-top:8px;">
+            <input type="file" id="otherChangeDoc" class="answer">
+            <div class="intro">Upload supporting document (optional)</div>
+          </div>
+        </div>
+
+        <!-- Primary Contact -->
+        <div class="section">
+          <label class="section-title">Primary contact <span class="required-star">*</span></label>
+          <input type="text" id="contactName" class="answer" placeholder="Contact name" required>
+          <input type="email" id="contactEmail" class="answer" placeholder="Contact email" style="margin-top:8px;" required>
+          <input type="tel" id="contactPhone" class="answer" placeholder="Contact phone" style="margin-top:8px;" required>
+        </div>
+
+        <!-- Final Confirmation -->
+        <div class="section">
+          <label class="section-title">Final confirmation <span class="required-star">*</span></label>
+          <div class="label-container">
+            <label class="choice-item">
+                <input type="checkbox" id="finalConfirm" class="answer"> I confirm the information provided is accurate and authorize Charity One to update my policy.
+            </label>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <div class="muted-small">Fields marked <span class="required-star">*</span> are required</div>
+          <div style="display:flex;gap:10px;">
+            <button type="button" id="previewBtn" class="btn secondary small">Preview</button>
+            <button id="submitBtn" class="btn" type="submit">Submit</button>
+          </div>
+        </div>
+
+        <div id="statusMsg" class="message hidden" aria-hidden="true"></div>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Preview Modal -->
+  <div id="previewModal" class="preview-modal hidden" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+    <div class="preview-dialog" role="document">
+      <header class="preview-header">
+        <h3 id="previewTitle">Review your answers</h3>
+        <button id="closePreview" class="preview-close" aria-label="Close preview">&times;</button>
+      </header>
+      <div class="preview-body" id="previewBody"></div>
+      <footer class="preview-footer">
+        <button id="editBtn" class="btn secondary">Back / Edit</button>
+        <button id="confirmSubmitBtn" class="btn">Confirm &amp; Submit</button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
