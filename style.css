@@ -122,6 +122,7 @@ html,body {
 .section {
     padding: 12px 0;
     border-top:1px solid rgba(0,0,0,0.04);
+    margin: 6px 0;
 } 
 
 .section:first-child {
@@ -136,10 +137,17 @@ html,body {
     margin-bottom: 16px;
 }
 
+.second-title {
+    font-size: 15px; 
+    font-weight: 600;
+    margin: 6px 0;
+    color: var(--dark-blue);
+}
+
 .sub-section-title {
     font-size: 13px; 
     font-weight: 600;
-    margin: 6px 0;
+    margin: 10px 0;
 }
 
 label.question {
@@ -169,6 +177,13 @@ label.question {
     border:1px solid #e3e8ee;
     border-radius:6px;
     box-sizing:border-box;
+    margin: 8px 0;
+}
+
+.next {
+    width: 100%;
+    font-family: var(--helvetica-font);
+    font-size: 13px;
     margin: 8px 0;
 }
 
@@ -222,7 +237,8 @@ label.question {
  .muted-small{font-size:13px;color:var(--muted);}
 
 summary {
-    margin: 6px 0;;
+    margin: 6px 0;
+    font-size: 14px;
 }
 
 .summary-content {
