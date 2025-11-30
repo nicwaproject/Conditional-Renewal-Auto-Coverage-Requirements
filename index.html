@@ -35,11 +35,8 @@
 
         <!-- Intro / E&O safe -->
         <div>
-          <p class="intro">
-            The carrier has amended the automobile coverage terms for your upcoming renewal.
-            Please review the updated terms and submit any vehicle additions, deletions, or changes needed under the new coverage conditions.
-            Any updates submitted through this form will be processed as your request.
-          </p>
+          <p class="intro">Important change for your renewal: Symbols 7, 8, 9 apply only to listed vehicles.</p>
+          <p class="intro">Any updates submitted through this form will be processed as your request to update the policy.</p>
         </div>
 
         <!-- Educational Symbol Section (collapsible) -->
@@ -66,8 +63,9 @@
           <label class="section-title">Acknowledgment <span class="required-star">*</span></label>
           <div class="label-container">
             <label class="choice-item">
-            <input type="checkbox" id="symbolsAck" class="answer"> I understand that only vehicles listed on the policy will be covered under Symbols 7, 8, and 9 for my renewal.
-          </label>
+              <input type="checkbox" id="symbolsAck" class="answer">
+              I understand that for my renewal, only vehicles listed on the policy will be covered under Symbols 7, 8, and 9, and it is my responsibility to request updates to any vehicles or changes that should be covered.
+            </label>
           </div>
         </div>
 
@@ -75,87 +73,184 @@
         <div class="section">
           <label class="section-title">Change type (select all that apply) <span class="required-star">*</span></label>
           <div class="choice-group" id="changeTypeGroup">
-            <label class="choice-item"><input type="checkbox" name="changeType" value="add"> Add a vehicle</label>
-            <label class="choice-item"><input type="checkbox" name="changeType" value="remove"> Remove a vehicle</label>
-            <label class="choice-item"><input type="checkbox" name="changeType" value="update"> Update / revise vehicle information</label>
-            <label class="choice-item"><input type="checkbox" name="changeType" value="other"> Other change</label>
-          </div>
-        </div>
 
-        <!-- Add Vehicle Section (conditional) -->
-        <div class="section hidden" id="addVehicleSection">
-          <label class="section-title">Add Vehicle</label>
+            <!-- Add a Vehicle -->
+            <label class="choice-item">
+              <input type="checkbox" name="changeType" value="add"> Add a vehicle
+            </label>
 
-          <div id="vehicleList">
-            <!-- vehicle rows will be appended here -->
-          </div>
+            <!-- Add Vehicle Section (conditional) -->
+            <div class="section hidden" id="addVehicleSection">
+              <label class="section-title">Add a Vehicle</label>
 
-          <button type="button" id="addVehicleBtn" class="btn secondary small" style="margin-top:10px;">Add another vehicle</button>
+              <div id="vehicleList">
+                <!-- vehicle rows will be appended here -->
+              </div>
 
-          <p class="intro">Provide Year, Make, Model, VIN, garaging address, effective date. Driver name optional.</p>
-        </div>
+              <button type="button" id="addVehicleBtn" class="btn secondary small" style="margin-top:10px;">Add another vehicle</button>
 
-        <!-- Remove Vehicle Section (conditional) -->
-        <div class="section hidden" id="removeVehicleSection">
-          <label class="section-title">Remove Vehicle</label>
-          <div>
-            <br>
-          <label class="sub-section-title">Which vehicle should be removed? (example: "2020 Ford Transit or VIN ending 3847")</label>
-          <input type="text" id="removeWhich" class="answer" placeholder='e.g., "2020 Ford Transit or VIN ending 3847"'>
-          <br>
-          <label class="sub-section-title">Effective date to remove</label>
-          <br>
-          <input type="date" id="removeDate" class="answer">
-          <br>
-          <label class="sub-section-title">Reason</label>
-          <select id="removeReason" class="answer">
-            <option value="">-- select reason --</option>
-            <option value="sold">Sold</option>
-            <option value="traded">Traded</option>
-            <option value="totaled">Totaled</option>
-            <option value="no_longer_used">No longer used</option>
-            <option value="other">Other</option>
-          </select>
-          <div style="margin-top:8px;">
-            <input type="file" id="removeDoc" class="answer">
-            <div class="intro">Upload supporting document (optional)</div>
-          </div>
-          </div>
-          
-        </div>
+              <p class="intro">Provide Year, Make, Model, VIN, garaging address, effective date. Driver name optional.</p>
+            </div>
 
-        <!-- Update / Revise Section (conditional) -->
-        <div class="section hidden" id="updateVehicleSection">
-          <label class="section-title">Update / Revise Vehicle Information</label>
-          <label class="sub-section-title">Correction type</label>
-          <select id="correctionType" class="answer">
-            <option value="">-- select correction --</option>
-            <option value="vin">VIN correction</option>
-            <option value="garaging">Garaging update</option>
-            <option value="driver">Driver update</option>
-            <option value="name">Name / typo correction</option>
-            <option value="other">Other</option>
-          </select>
+            <!-- Remove Vehicle -->
+            <label class="choice-item">
+              <input type="checkbox" name="changeType" value="remove"> Remove a vehicle
+            </label>
 
-          <label class="sub-section-title">Updated information</label>
-          <input type="text" id="updatedInfo" class="answer" placeholder="Provide updated value">
+            <!-- (conditional) -->
+            <div class="section hidden" id="removeVehicleSection">
+              <label class="section-title">Remove Vehicle <span class="required-star">*</span></label>
 
-          <label class="sub-section-title">Effective date (optional)</label>
-          <input type="date" id="updateEffDate" class="answer">
+              <div style="margin-top:10px;">
 
-          <div style="margin-top:8px;">
-            <input type="file" id="updateDoc" class="answer">
-            <div class="intro">Upload supporting document (optional)</div>
-          </div>
-        </div>
+                <label class="sub-section-title">
+                  Which vehicle should be removed? <span class="required-star">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="remove_vehicle_id"
+                  class="answer"
+                  placeholder='e.g. "2020 Ford Transit" or "VIN ending 3847"'
+                  style="margin-top:6px;"
+                >
 
-        <!-- Other Change Section (conditional) -->
-        <div class="section hidden" id="otherChangeSection">
-          <label class="section-title">Other change</label>
-          <textarea id="otherChangeDesc" class="answer" placeholder="Describe the requested change"></textarea>
-          <div style="margin-top:8px;">
-            <input type="file" id="otherChangeDoc" class="answer">
-            <div class="intro">Upload supporting document (optional)</div>
+                <!-- Effective date -->
+                <label class="sub-section-title" style="margin-top:14px;">
+                  Effective date to remove this vehicle <span class="required-star">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="remove_effective_date"
+                  class="answer"
+                  style="margin-top:6px;"
+                >
+
+                <!-- Reason -->
+                <label class="sub-section-title">Reason</label>
+                <select id="removeReason" class="answer">
+                  <option value="">-- select reason --</option>
+                  <option value="sold">Sold</option>
+                  <option value="traded">Traded</option>
+                  <option value="totaled">Totaled</option>
+                  <option value="no_longer_used">No longer in use</option>
+                  <option value="other">Other</option>
+                </select>
+
+                <!-- Reason other (conditional) -->
+                <div id="removeReasonOtherContainer" class="hidden" style="margin-top:10px;">
+                  <label class="sub-section-title">
+                    Explain other reason <span class="required-star">*</span>
+                  </label>
+                  <textarea id="removeReasonOther" class="answer"></textarea>
+                </div>
+
+                <!-- Upload doc -->
+                <div style="margin-top:14px;">
+                  <input type="file" id="remove_supporting_document" class="answer">
+                  <div class="intro">Upload supporting document (optional)</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Update Vehicle -->
+            <label class="choice-item">
+              <input type="checkbox" name="changeType" value="update"> Update / revise vehicle information
+            </label>
+
+            <!-- Update / Revise Section -->
+            <div class="section hidden" id="updateVehicleSection">
+
+              <label class="section-title">Update / Revise Vehicle Information</label>
+
+              <!-- Which vehicle -->
+              <label class="sub-section-title">
+                Which vehicle are you updating? <span class="required-star">*</span>
+              </label>
+              <input type="text" id="updateVehicleId" name="update_vehicle_id" class="answer" placeholder="e.g., 2020 Ford Transit or VIN ending 3847">
+
+              <!-- What needs to be updated -->
+              <label class="sub-section-title">
+                What needs to be updated or corrected? <span class="required-star">*</span>
+              </label>
+              <select id="updateType" name="update_type" class="answer">
+                <option value="">-- select type --</option>
+                <option value="vin">VIN correction</option>
+                <option value="garaging">Garaging address update</option>
+                <option value="driver_usage">Driver or usage update</option>
+                <option value="name_typo">Name or typo correction</option>
+                <option value="other_change">Other change</option>
+              </select>
+
+              <!-- Describe the change -->
+              <div id="updateTypeOtherContainer" class="hidden" style="margin-top:8px;">
+                <label class="sub-section-title">
+                  Describe the change <span class="required-star">*</span>
+                </label>
+                <textarea id="updateTypeOther" name="update_type_other" class="answer"></textarea>
+              </div>
+
+              <!-- Updated information -->
+              <label class="sub-section-title">
+                Updated information <span class="required-star">*</span>
+              </label>
+              <textarea id="updateDetails" name="update_details" class="answer" placeholder="Describe the updated information"></textarea>
+
+              <!-- Transport clients? -->
+              <label class="sub-section-title">Is this vehicle used to transport clients, participants, or residents?</label>
+              <div class="radio-group" style="margin:6px 0; font-size:14px;">
+                <label><input type="radio" name="update_client_transport" value="yes"> Yes</label>
+                <label style="margin-left:15px;"><input type="radio" name="update_client_transport" value="no"> No</label>
+                <label style="margin-left:15px;"><input type="radio" name="update_client_transport" value="no_change"> No change</label>
+              </div>
+
+              <!-- Notes about client transport -->
+              <div id="updateClientTransportNotesContainer" class="hidden" style="margin-top:8px;">
+                <label class="sub-section-title">Notes about client transport</label>
+                <textarea id="updateClientTransportNotes" name="update_client_transport_notes" class="answer"></textarea>
+              </div>
+
+              <!-- Effective date -->
+              <label class="sub-section-title">Effective date for this change</label>
+              <input type="date" id="updateEffectiveDate" name="update_effective_date" class="answer">
+
+              <!-- File upload -->
+              <div style="margin-top:8px;">
+                <input type="file" id="updateSupportingDoc" name="update_supporting_document" class="answer">
+                <div class="intro">Upload supporting document (optional)</div>
+              </div>
+
+            </div>
+
+            <!-- Other Change -->
+            <label class="choice-item">
+              <input type="checkbox" name="changeType" value="other"> Other change
+            </label>
+
+            <!-- Other Change Section -->
+            <div class="section hidden" id="otherChangeSection">
+
+              <label class="section-title">Other Change</label>
+              <br>
+
+              <!-- Description -->
+              <label class="sub-section-title">
+                Describe the change you are requesting <span class="required-star">*</span>
+              </label>
+              <textarea id="otherChangeDescription" name="other_change_description" class="answer" required></textarea>
+
+              <!-- Effective date -->
+              <label class="sub-section-title">Effective date for this change</label>
+              <input type="date" id="otherChangeEffectiveDate" name="other_change_effective_date" class="answer">
+
+              <!-- Supporting document -->
+              <div style="margin-top:8px;">
+                <input type="file" id="otherChangeDocument" name="other_change_supporting_document" class="answer">
+                <div class="intro">Upload supporting document (optional)</div>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -165,6 +260,7 @@
           <input type="text" id="contactName" class="answer" placeholder="Contact name" required>
           <input type="email" id="contactEmail" class="answer" placeholder="Contact email" style="margin-top:8px;" required>
           <input type="tel" id="contactPhone" class="answer" placeholder="Contact phone" style="margin-top:8px;" required>
+          <p class="intro">We will contact this person if we have any questions about your request.</p>
         </div>
 
         <!-- Final Confirmation -->
@@ -172,21 +268,31 @@
           <label class="section-title">Final confirmation <span class="required-star">*</span></label>
           <div class="label-container">
             <label class="choice-item">
-                <input type="checkbox" id="finalConfirm" class="answer"> I confirm the information provided is accurate and authorize Charity One to update my policy.
+              <input type="checkbox" id="finalConfirm" class="answer">
+              I confirm the information provided is accurate and authorize Charity One Insurance Agency, Inc. to update my policy based on this request.
             </label>
           </div>
         </div>
 
+        <!-- What happens next -->
+        <div class="section">
+          <label class="section-title">What happens next</label>
+          <p class="next">After we receive your request, our team will review it, submit any needed changes to the carrier, and send you a confirmation of what was updated on your policy.</p>
+        </div>
+
         <!-- Actions -->
         <div class="actions">
-          <div class="muted-small">Fields marked <span class="required-star">*</span> are required</div>
-          <div style="display:flex;gap:10px;">
+          <div class="muted-small">
+            Fields marked <span class="required-star">*</span> are required
+          </div>
+          <div style="display:flex; gap:10px;">
             <button type="button" id="previewBtn" class="btn secondary small">Preview</button>
             <button id="submitBtn" class="btn" type="submit">Submit</button>
           </div>
         </div>
 
         <div id="statusMsg" class="message hidden" aria-hidden="true"></div>
+
       </form>
 
     </div>
@@ -208,5 +314,6 @@
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
